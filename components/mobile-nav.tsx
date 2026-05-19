@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { isActiveNavPath } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -36,10 +37,7 @@ export function MobileNav() {
           </SheetHeader>
           <nav aria-label="Mobile navigation" className="flex flex-col gap-1 p-4">
             {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              const isActive = isActiveNavPath(pathname, item.href);
 
               return (
                 <Link

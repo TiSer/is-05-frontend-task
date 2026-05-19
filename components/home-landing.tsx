@@ -41,21 +41,27 @@ const bentoSpans = [
 export function HomeLanding() {
   const heroPhoto =
     galleryPhotos.find((p) => p.id === "p5") ?? galleryPhotos[0];
-  const gridPhotos = galleryPhotos.filter((p) => p.id !== heroPhoto.id);
+  const gridPhotos = heroPhoto
+    ? galleryPhotos.filter((p) => p.id !== heroPhoto.id)
+    : [];
 
   return (
     <div className="flex flex-col">
       {/* Cinematic hero */}
       <section className="relative min-h-[min(92vh,720px)] overflow-hidden">
-        <Image
-          src={heroPhoto.src}
-          alt={heroPhoto.title}
-          fill
-          priority
-          quality={galleryImageQuality}
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+        {heroPhoto ? (
+          <Image
+            src={heroPhoto.src}
+            alt={heroPhoto.title}
+            fill
+            priority
+            quality={galleryImageQuality}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-elevated" aria-hidden="true" />
+        )}
         <div
           className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/20"
           aria-hidden="true"
@@ -119,6 +125,7 @@ export function HomeLanding() {
       </section>
 
       {/* Photo bento */}
+      {gridPhotos.length > 0 && (
       <section className="px-page-mobile py-14 lg:px-page-desktop lg:py-16">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -172,6 +179,7 @@ export function HomeLanding() {
           ))}
         </div>
       </section>
+      )}
 
       {/* Pillars */}
       <section className="border-t border-border bg-tertiary/50 px-page-mobile py-14 lg:px-page-desktop lg:py-16">

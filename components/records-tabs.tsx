@@ -12,8 +12,18 @@ type RecordsTabsProps = {
 };
 
 export function RecordsTabs({ tracks }: RecordsTabsProps) {
+  if (tracks.length === 0) {
+    return (
+      <Card className="rounded-md border border-border bg-card py-0 ring-0">
+        <CardContent className="px-4 py-8 text-body text-muted-foreground">
+          No tracks recorded yet. Add a track to start logging sessions.
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
-    <Tabs defaultValue={tracks[0]?.id} className="w-full">
+    <Tabs defaultValue={tracks[0].id} className="w-full">
       <TabsList className="mb-6 h-auto w-full flex-wrap justify-start gap-1 bg-elevated p-1 lg:w-auto">
         {tracks.map((track) => (
           <TabsTrigger

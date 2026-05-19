@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isActiveNavPath } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -26,10 +27,7 @@ export function SidebarNav() {
       </div>
       <nav aria-label="Main navigation" className="flex flex-1 flex-col gap-1 p-4">
         {navItems.map((item) => {
-          const isActive =
-            item.href === "/"
-              ? pathname === "/"
-              : pathname.startsWith(item.href);
+          const isActive = isActiveNavPath(pathname, item.href);
 
           return (
             <Link

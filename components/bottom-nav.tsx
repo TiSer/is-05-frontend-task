@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isActiveNavPath } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -20,10 +21,7 @@ export function BottomNav() {
       className="fixed inset-x-0 bottom-0 z-40 flex h-16 items-center justify-around border-t border-border bg-card px-6 lg:hidden"
     >
       {navItems.map((item) => {
-        const isActive =
-          item.href === "/"
-            ? pathname === "/"
-            : pathname.startsWith(item.href);
+        const isActive = isActiveNavPath(pathname, item.href);
 
         return (
           <Link
