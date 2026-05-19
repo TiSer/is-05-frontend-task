@@ -1,16 +1,13 @@
 # Product Requirements
-
-> Fill this file with **what** you are building, **for whom**, and the **Figma URLs** that act as the source of truth. The agent reads this on every session via `AGENTS.md`.
-
 ## What
 
-<!-- 1–3 sentences: what page / app are you building? -->
-Example: We are implementing a responsive marketing landing page for a developer-tools SaaS.
+We are implementing motorcycle track racing website.
+
+Style: Racing-inspired, dark mode, Kawasaki green accents, aggressive sporty aesthetic.
 
 ## For Whom
 
-<!-- 1 sentence: who is the audience? -->
-Example: Senior backend engineers evaluating an internal observability platform.
+Moto fans.
 
 ## Constraints
 
@@ -22,34 +19,30 @@ Example: Senior backend engineers evaluating an internal observability platform.
 
 ## Figma Source of Truth
 
-<!--
-Replace the example URLs below with your own Figma file.
-
-Use *Copy link to selection* in Figma to get a URL with `?node-id=...` —
-this gives the agent the **scoped frame**, not the whole file.
--->
-
 Main Figma file:
-https://www.figma.com/design/REPLACE_ME/Your-Design-File
+https://www.figma.com/design/jiKKJNmBrUv4aCHVqUFNoB/Ninja-400-Track-Racing
 
 Mobile layout (frame URL with `node-id`):
-https://www.figma.com/design/REPLACE_ME/Your-Design-File?node-id=REPLACE_ME
+https://www.figma.com/design/jiKKJNmBrUv4aCHVqUFNoB/Ninja-400-Track-Racing?node-id=8-2
 
 Desktop layout (frame URL with `node-id`):
-https://www.figma.com/design/REPLACE_ME/Your-Design-File?node-id=REPLACE_ME
+https://www.figma.com/design/jiKKJNmBrUv4aCHVqUFNoB/Ninja-400-Track-Racing?node-id=8-2&t=N5i3Oh2f0bfjp4Kb-4
+_TBD — MCP rate limit hit before Desktop Layout was created. Duplicate Mobile Layout to 1440px or ask agent to finish when limit resets._
 
-## Sections to Implement (minimum 3)
+Design tokens in file: `Racing Tokens` collection (dark bg, Kawasaki green `#69BE28`, surfaces, text).
 
-- [ ] Hero
-- [ ] Features
-- [ ] Pricing
-- [ ] Newsletter / CTA
-- [ ] Contact / Footer
+Additional screens to add in Figma: Dashboard, Track Records, Photo Gallery.
+
+## Sections to Implement
+
+We need:
+- [ ] Landing page with hero section for my Kawasaki Ninja
+- [ ] Dashboard showing best lap times
+- [ ] Records page on different tracks
+- [ ] Photo gallery for track day photos
 
 ## Interaction Requirements (minimum 1 client component)
 
 - [ ] Burger menu (mobile nav)
 - [ ] Tabs / accordion
-- [ ] Modal / dialog / sheet
 - [ ] Tooltip
-- [ ] Form with validation

@@ -1,76 +1,236 @@
-# DESIGN.md
+---
+version: alpha
+name: Ninja Track Racing
+description: Dark-mode motorcycle track racing app for Kawasaki Ninja riders — lap times, sessions, records, and track-day gallery.
+colors:
+  primary: "#69BE28"
+  secondary: "#9999A6"
+  tertiary: "#1A1A1F"
+  neutral: "#FFFFFF"
+  background: "#0A0A0D"
+  elevated: "#242429"
+  border: "#383840"
+  on-primary: "#0A0A0D"
+typography:
+  display:
+    fontFamily: Inter
+    fontSize: 3.5rem
+    fontWeight: 800
+    lineHeight: 1.1
+  display-mobile:
+    fontFamily: Inter
+    fontSize: 2rem
+    fontWeight: 800
+    lineHeight: 1.15
+  h1:
+    fontFamily: Inter
+    fontSize: 1.75rem
+    fontWeight: 700
+    lineHeight: 1.2
+  h2:
+    fontFamily: Inter
+    fontSize: 1.25rem
+    fontWeight: 700
+    lineHeight: 1.3
+  body:
+    fontFamily: Inter
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.5
+  body-lg:
+    fontFamily: Inter
+    fontSize: 1.125rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: Inter
+    fontSize: 0.875rem
+    fontWeight: 600
+    lineHeight: 1.4
+  stat:
+    fontFamily: Inter
+    fontSize: 1.75rem
+    fontWeight: 700
+    lineHeight: 1.2
+  caption:
+    fontFamily: Inter
+    fontSize: 0.75rem
+    fontWeight: 500
+    lineHeight: 1.35
+  badge:
+    fontFamily: Inter
+    fontSize: 0.6875rem
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: 0.04em
+rounded:
+  sm: 8px
+  md: 10px
+  lg: 12px
+  full: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 32px
+  page-mobile: 16px
+  page-desktop: 48px
+components:
+  page-canvas:
+    backgroundColor: "{colors.background}"
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    typography: label
+    rounded: "{rounded.sm}"
+    padding: 14px
+  button-primary-hover:
+    backgroundColor: "#7AD033"
+    textColor: "{colors.on-primary}"
+  button-secondary:
+    backgroundColor: "{colors.tertiary}"
+    textColor: "{colors.neutral}"
+    typography: label
+    rounded: "{rounded.sm}"
+    padding: 14px
+  card-surface:
+    backgroundColor: "{colors.tertiary}"
+    rounded: "{rounded.md}"
+    padding: "{spacing.md}"
+  card-track:
+    backgroundColor: "{colors.tertiary}"
+    textColor: "{colors.neutral}"
+    rounded: "{rounded.md}"
+    padding: "{spacing.md}"
+  card-stat:
+    backgroundColor: "{colors.elevated}"
+    rounded: "{rounded.md}"
+    padding: "{spacing.md}"
+  nav-item-active:
+    textColor: "{colors.primary}"
+    typography: caption
+  nav-item:
+    textColor: "{colors.secondary}"
+    typography: caption
+---
 
-> Agent-readable style guide. Fill this in **before** writing any UI. Keep it in sync with `app/globals.css` — the agent reads both.
+## Overview
 
-## Product
+Motorcycle track racing web app centered on the **Kawasaki Ninja**. Audience: moto fans and track-day riders who log laps, sessions, and personal bests.
 
-- Product type: <!-- e.g. SaaS dashboard, marketing landing -->
-- Audience: <!-- e.g. technical users, designers, end consumers -->
-- Tone: <!-- e.g. precise, calm, high-signal / playful, energetic -->
+**Tone:** Aggressive, sporty, pit-lane energy — not corporate SaaS. Racing-inspired **dark mode** with **Kawasaki green** (`#69BE28`) as the sole accent driver.
 
-## Visual Direction
+**Figma source of truth** (see also `docs/prd.md`):
 
-- Style: <!-- e.g. clean, dense, professional, minimal -->
-- Avoid: <!-- e.g. generic gradient SaaS look, glassmorphism, neumorphism -->
+| Asset | Link |
+| ----- | ---- |
+| Main file | [Ninja Track Racing](https://www.figma.com/design/jiKKJNmBrUv4aCHVqUFNoB/Ninja-400-Track-Racing) |
+| Mobile layout (375px) | [Mobile Layout](https://www.figma.com/design/jiKKJNmBrUv4aCHVqUFNoB/Ninja-400-Track-Racing?node-id=8-2) |
+| Desktop layout (1440px) | [Desktop Layout](https://www.figma.com/design/jiKKJNmBrUv4aCHVqUFNoB/Ninja-400-Track-Racing?node-id=8-2&t=N5i3Oh2f0bfjp4Kb-4) |
 
-## Color Tokens
+Figma variable collection: `Racing Tokens` (Dark mode). **In Figma today:** Landing (mobile + desktop duplicate). **Still to design:** Dashboard, Track Records, Photo Gallery.
 
-| Token                   | Hex       | Usage                                    |
-| ----------------------- | --------- | ---------------------------------------- |
-| `color.primary`         | `#0000FF` | Primary buttons, CTAs, accent highlights |
-| `color.text.default`    | `#111111` | Headings, navigation links               |
-| `color.text.secondary`  | `#444444` | Paragraphs, descriptions                 |
-| `color.text.inverse`    | `#FFFFFF` | Text on primary or dark backgrounds      |
-| `color.background`      | `#FFFFFF` | Default page background                  |
-| `color.background.dark` | `#0A0A0A` | Dark sections / hero backgrounds         |
-| `color.border`          | `#E5E5E5` | Input borders and subtle dividers        |
+**Implementation sync:** Map YAML tokens to `app/globals.css` via `npx @google/design.md export --format css-tailwind docs/DESIGN.md`. Do not hardcode hex in components.
 
-> Replace the hex values above with the tokens extracted from your Figma file.
+**Pages (from PRD):** Landing (Ninja hero), Dashboard (lap times + sessions), Track Records (DniproKart and others), Photo Gallery (track day photos).
+
+## Colors
+
+Dark, high-contrast palette with one brand accent.
+
+- **Primary (#69BE28):** Kawasaki green — logo, CTAs, active nav, stat highlights, badges, focus rings.
+- **Secondary (#9999A6):** Muted slate — secondary copy, inactive nav, metadata.
+- **Tertiary (#1A1A1F):** Surface — header, bottom nav, cards, secondary buttons.
+- **Neutral (#FFFFFF):** Primary text on dark backgrounds.
+- **Background (#0A0A0D):** Page canvas.
+- **Elevated (#242429):** Stat cards, badges, menu button, image placeholders.
+- **Border (#383840):** Dividers, card strokes, input borders.
+- **On-primary (#0A0A0D):** Text on green buttons (WCAG contrast).
 
 ## Typography
 
-Primary font family: <!-- e.g. Inter, Geist, Graphik, ... -->
-Fallback: project default (`var(--font-geist-sans)`).
+**Font stack:** Inter (Figma + tokens). Fallback in code: `var(--font-geist-sans)`.
 
-| Style          | Weight | Size | Line Height |
-| -------------- | ------ | ---- | ----------- |
-| `type.h1`      | 700    | 64px | 72px        |
-| `type.h2`      | 700    | 48px | 56px        |
-| `type.h3`      | 600    | 24px | 32px        |
-| `type.body`    | 400    | 16px | 24px        |
-| `type.button`  | 500    | 16px | 24px        |
-| `type.caption` | 400    | 14px | 20px        |
+- **Display:** Extra-bold hero (“Kawasaki Ninja”) — `display-mobile` on small screens, `display` from `lg` up.
+- **H1:** Page titles (Dashboard, Track Records).
+- **H2:** Section headers (“Recent Tracks”, “Lap Times”).
+- **Body / body-lg:** Subtitles and descriptions.
+- **Label:** Buttons, table headers, nav labels.
+- **Stat:** Lap times and numeric highlights — always in **primary** green.
+- **Caption:** Bottom nav, session meta (“PB 1:04.2 · 12 sessions”).
+- **Badge:** Uppercase optional pills (“TRACK WEAPON”) — green text, elevated fill, green stroke.
 
-## Spacing And Radius
+## Layout
 
-| Token             | Value | Usage                       |
-| ----------------- | ----- | --------------------------- |
-| `radius.button`   | 12px  | Primary button radius       |
-| `radius.input`    | 12px  | Input field radius          |
-| `radius.card`     | 16px  | Card / surface radius       |
-| `space.control.x` | 24px  | Horizontal button padding   |
-| `space.control.y` | 12px  | Vertical button padding     |
+**Mobile-first:** 375px base → 1440px+ desktop.
+
+- **Mobile:** Single column; fixed header (56px); bottom nav (64px) with four items — Home, Dash, Records, Gallery.
+- **Desktop:** Target left sidebar nav (Home, Dashboard, Track Records, Gallery) + main content; current Figma desktop frame is a widened mobile duplicate — refine in Figma or code.
+- **Page padding:** `{spacing.page-mobile}` horizontal on mobile, `{spacing.page-desktop}` on desktop.
+- **Section gaps:** `{spacing.lg}`–`{spacing.xl}` between hero, stats, and track preview blocks.
+- **Stats row:** Three equal columns (Best Lap, Sessions, Tracks).
+- **Dashboard:** Lap table full width on desktop; session cards in a right column (~400px) or stacked on mobile.
+- **Gallery:** Responsive grid (2 cols mobile, 3–4 cols desktop).
+
+### Mobile landing structure (implemented in Figma)
+
+1. Header — “NINJA” wordmark + burger menu  
+2. Hero — badge, title, subtitle, bike image placeholder, dual CTAs  
+3. Stats — Best Lap `1:04.2`, Sessions `24`, Tracks `5`  
+4. Tracks preview — DniproKart card  
+5. Bottom nav — active item uses primary green  
+
+## Elevation & Depth
+
+Depth through **tonal layers**, not heavy shadows.
+
+- **Background** → **surface (tertiary)** → **elevated** for nested cards and controls.
+- Borders (`{colors.border}`) separate rows and cards where contrast alone is insufficient.
+- Optional subtle shadow on modals/sheets only; avoid glassmorphism and neumorphism.
+
+## Shapes
+
+Sporty but controlled — slight rounding, no pills except badges.
+
+- **Buttons & icon controls:** `{rounded.sm}` (8px).
+- **Cards & track rows:** `{rounded.md}`–`{rounded.lg}` (10–12px).
+- **Pills / badges:** `{rounded.full}` for “TRACK WEAPON” and similar tags.
+- **Hero image placeholder:** `{rounded.lg}` with optional 4px primary accent bar on desktop.
 
 ## Components
 
-- Prefer composition from `components/ui` primitives.
-- Compose screens from Card, Button, Input, Dialog, Sheet, Tabs, Table, Badge.
-- Do not create one-off components if an existing primitive fits.
+Use shadcn primitives (`Button`, `Card`, `Badge`, `Table`, `Tabs`, `Sheet`, `Tooltip`) styled with these tokens.
 
-## Interaction States
+| Pattern | Tokens / behavior |
+| ------- | ----------------- |
+| Primary CTA | `button-primary` / `button-primary-hover` — “View Sessions” |
+| Secondary CTA | `button-secondary` + border — “Records” |
+| Stat card | `card-stat` — large `{typography.stat}` in primary, caption label in secondary |
+| Track row | `card-surface` + border — title, PB in primary, chevron or meta |
+| Bottom nav | `nav-item` default; `nav-item-active` for current route |
+| Burger menu | `Sheet` on mobile; `aria-label` required |
+| Tabs / accordion | Track records grouped by venue |
+| Tooltip | Lap and session detail on dashboard |
 
-- Every interactive element must define hover, focus-visible, disabled, loading, and error states.
-- Keyboard navigation is required end-to-end.
+**Interaction states (all interactives):** `hover`, `focus-visible` (primary green ring), `disabled`, `loading` where applicable. Keyboard navigation end-to-end.
 
-## Accessibility
+## Do's and Don'ts
 
-- Target WCAG 2.2 AA.
-- Preserve visible focus rings on every interactive element.
-- Avoid low-contrast muted text for primary content.
+**Do**
 
-## Responsive Behavior
+- Use **primary green** for the single most important action per screen and for active navigation.
+- Keep backgrounds dark; stack surfaces as background → tertiary → elevated.
+- Use **stat** typography + primary color for lap times and PBs.
+- Target **WCAG 2.2 AA**; visible focus rings on every interactive element.
+- Degrade dashboard tables to cards on narrow viewports.
+- Sync tokens to `app/globals.css`; validate with `npx @google/design.md lint docs/DESIGN.md`.
 
-- Mobile-first.
-- Tables degrade into cards or horizontal scroll with clear affordance.
-- Sidebars collapse to Sheet on mobile.
-- Hero typography scales down gracefully (`text-[40px]` mobile → `text-[64px]` desktop).
+**Don't**
+
+- Don't use generic gradient SaaS, glassmorphism, or light-gray dashboard defaults.
+- Don't introduce off-brand neon/lime that isn't Kawasaki `#69BE28`.
+- Don't use **secondary** muted color for essential content or primary actions.
+- Don't hardcode hex in React components — reference CSS variables from exported tokens.
+- Don't add charting or animation libraries unless PRD explicitly requires them.
+- Don't mix sharp corners with large pill radii on the same control type (badges excepted).

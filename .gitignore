@@ -20,10 +20,12 @@
 # production
 /build
 
+# cursor (local MCP overrides; use mcp.json.example + scripts in repo)
+.cursor/mcp.json
+
 # misc
 .DS_Store
 *.pem
-nul
 
 # debug
 npm-debug.log*
@@ -40,6 +42,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# cursor mcp config (may contain secrets — only the .example is committed)
-.cursor/mcp.json
