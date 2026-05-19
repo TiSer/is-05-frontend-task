@@ -6,11 +6,13 @@ import { tracks } from "@/lib/data";
 export default function RecordsPage() {
   return (
     <PageShell>
-      <PageHeader
-        title="Track Records"
-        description="Personal bests and session history across every circuit you ride."
-      />
-      <RecordsTabs tracks={tracks} />
+      <div className="flex flex-1 flex-col">
+        <PageHeader
+          title="Track Records"
+          description="Personal bests and session history across every circuit you ride."
+        />
+        <RecordsTabs tracks={tracks} />
+      </div>
     </PageShell>
   );
 }

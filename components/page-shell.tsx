@@ -10,13 +10,13 @@ type PageShellProps = {
 
 export function PageShell({ children, className }: PageShellProps) {
   return (
-    <div className="flex min-h-full flex-col bg-background lg:flex-row">
+    <div className="flex min-h-screen flex-col bg-background lg:flex-row">
       <SidebarNav />
-      <div className="flex min-h-full flex-1 flex-col">
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col bg-background">
         <MobileNav />
         <main
           className={cn(
-            "flex-1 px-page-mobile pb-24 pt-6 lg:px-page-desktop lg:pb-8 lg:pt-8",
+            "flex flex-1 flex-col px-page-mobile pb-24 pt-6 lg:px-page-desktop lg:pb-8 lg:pt-8",
             className
           )}
         >

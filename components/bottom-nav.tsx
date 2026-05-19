@@ -1,16 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NavLinkItem } from "@/components/nav-link-item";
+import { mainNavItems } from "@/lib/nav-config";
 import { isActiveNavPath } from "@/lib/navigation";
-import { cn } from "@/lib/utils";
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/dashboard", label: "Dash" },
-  { href: "/records", label: "Records" },
-  { href: "/gallery", label: "Gallery" },
-] as const;
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -18,38 +11,23 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Main navigation"
-      className="fixed inset-x-0 bottom-0 z-40 flex h-16 items-center justify-around border-t border-border bg-card px-6 lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden"
     >
-      {navItems.map((item) => {
-        const isActive = isActiveNavPath(pathname, item.href);
-
-        return (
-          <Link
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+        aria-hidden="true"
+      />
+      <div className="flex items-center justify-around">
+        {mainNavItems.map((item, index) => (
+          <NavLinkItem
             key={item.href}
-            href={item.href}
-            className={cn(
-              "flex flex-col items-center gap-1 rounded-sm px-2 py-1 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
-              isActive ? "text-primary" : "text-muted-foreground"
-            )}
-          >
-            <span
-              className={cn(
-                "size-1.5 rounded-full",
-                isActive ? "bg-primary" : "bg-muted-foreground"
-              )}
-              aria-hidden="true"
-            />
-            <span
-              className={cn(
-                "text-caption",
-                isActive ? "font-bold" : "font-medium"
-              )}
-            >
-              {item.label}
-            </span>
-          </Link>
-        );
-      })}
+            item={item}
+            index={index}
+            variant="bottom"
+            isActive={isActiveNavPath(pathname, item.href)}
+          />
+        ))}
+      </div>
     </nav>
   );
 }

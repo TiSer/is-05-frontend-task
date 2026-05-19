@@ -34,7 +34,7 @@ export default function RootLayout({
         geistMono.variable
       )}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-screen flex-col">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
