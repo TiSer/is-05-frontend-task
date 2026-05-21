@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter, Rajdhani } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
+/** UI / body — wide, readable (nav labels, tables, paragraphs). */
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+/** Display / headings — motorsport broadcast titles (OFL). */
+const rajdhani = Rajdhani({
+  variable: "--font-rajdhani",
+  subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -31,6 +40,7 @@ export default function RootLayout({
       className={cn(
         "dark h-full antialiased",
         inter.variable,
+        rajdhani.variable,
         geistMono.variable
       )}
     >

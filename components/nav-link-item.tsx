@@ -81,7 +81,9 @@ export function NavLinkItem({
         <Icon className="size-[18px]" strokeWidth={isActive ? 2.25 : 2} />
       </span>
       <span className="flex min-w-0 flex-1 flex-col">
-        <span className="text-label leading-tight">{label}</span>
+        <span className="font-sans text-label leading-snug tracking-normal">
+          {label}
+        </span>
         {isActive && (
           <span className="text-[0.65rem] font-medium tracking-wider text-primary/80 uppercase">
             Active

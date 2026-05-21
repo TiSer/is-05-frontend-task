@@ -23,7 +23,7 @@ export function NavBrand({ className, compact }: NavBrandProps) {
         </p>
         <p
           className={cn(
-            "font-extrabold tracking-wide text-foreground uppercase",
+            "font-display font-bold tracking-wide text-foreground uppercase",
             compact ? "text-lg" : "text-xl"
           )}
         >

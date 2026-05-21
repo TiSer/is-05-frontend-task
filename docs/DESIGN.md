@@ -150,7 +150,7 @@ Dark, high-contrast palette with one brand accent.
 
 ## Typography
 
-**Font stack:** Inter (Figma + tokens). Fallback in code: `var(--font-geist-sans)`.
+**Font stack:** Rajdhani (display/headings/stats) + Inter (UI/body/nav) via `next/font/google`. Rajdhani gives a MotoGP-style broadcast look; Inter keeps nav and tables readable. Geist Mono for index labels.
 
 - **Display:** Extra-bold hero (“Kawasaki Ninja”) — `display-mobile` on small screens, `display` from `lg` up.
 - **H1:** Page titles (Dashboard, Track Records).
