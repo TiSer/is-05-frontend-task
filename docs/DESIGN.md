@@ -13,22 +13,22 @@ colors:
   on-primary: "#0A0A0D"
 typography:
   display:
-    fontFamily: Inter
+    fontFamily: Rajdhani
     fontSize: 3.5rem
-    fontWeight: 800
+    fontWeight: 700
     lineHeight: 1.1
   display-mobile:
-    fontFamily: Inter
+    fontFamily: Rajdhani
     fontSize: 2rem
-    fontWeight: 800
+    fontWeight: 700
     lineHeight: 1.15
   h1:
-    fontFamily: Inter
+    fontFamily: Rajdhani
     fontSize: 1.75rem
     fontWeight: 700
     lineHeight: 1.2
   h2:
-    fontFamily: Inter
+    fontFamily: Rajdhani
     fontSize: 1.25rem
     fontWeight: 700
     lineHeight: 1.3
@@ -48,7 +48,7 @@ typography:
     fontWeight: 600
     lineHeight: 1.4
   stat:
-    fontFamily: Inter
+    fontFamily: Rajdhani
     fontSize: 1.75rem
     fontWeight: 700
     lineHeight: 1.2
@@ -150,16 +150,23 @@ Dark, high-contrast palette with one brand accent.
 
 ## Typography
 
-**Font stack:** Rajdhani (display/headings/stats) + Inter (UI/body/nav) via `next/font/google`. Rajdhani gives a MotoGP-style broadcast look; Inter keeps nav and tables readable. Geist Mono for index labels.
+**Font stack (source of truth):** [Rajdhani](https://fonts.google.com/specimen/Rajdhani) for display/headings/stats + [Inter](https://fonts.google.com/specimen/Inter) for UI/body/nav, loaded via `next/font/google` in `app/layout.tsx`. Geist Mono for nav index labels. Rajdhani is an OFL-licensed alternative to proprietary MotoGP™ display fonts; Inter keeps condensed nav labels and tables readable.
 
-- **Display:** Extra-bold hero (“Kawasaki Ninja”) — `display-mobile` on small screens, `display` from `lg` up.
-- **H1:** Page titles (Dashboard, Track Records).
-- **H2:** Section headers (“Recent Tracks”, “Lap Times”).
-- **Body / body-lg:** Subtitles and descriptions.
-- **Label:** Buttons, table headers, nav labels.
-- **Stat:** Lap times and numeric highlights — always in **primary** green.
-- **Caption:** Bottom nav, session meta (“PB 1:04.2 · 12 sessions”).
-- **Badge:** Uppercase optional pills (“TRACK WEAPON”) — green text, elevated fill, green stroke.
+| Role | YAML token | CSS | `app/globals.css` |
+| ---- | ---------- | --- | ----------------- |
+| Hero, page titles, section headers, lap stats | `display`, `display-mobile`, `h1`, `h2`, `stat` | `--font-display` / `font-display` | `h1`–`h3`, `.text-display*`, `.text-h1`, `.text-h2`, `.text-stat` → Rajdhani |
+| Body, buttons, tables, nav labels | `body`, `body-lg`, `label`, `caption`, `badge` | `--font-sans` / `font-sans` | `body`, default UI → Inter |
+| Nav indices | — | `--font-mono` | `.font-mono` → Geist Mono |
+
+YAML `fontWeight` for Rajdhani tokens matches loaded weights **600–700** in code (Tailwind `font-extrabold` on display uses weight 700).
+
+- **Display:** Hero headlines (“Where asphalt meets adrenaline”) — `display-mobile` on small screens, `display` from `lg` up — **Rajdhani**.
+- **H1 / H2 / H3:** Page and section titles — **Rajdhani** (semantic headings via `@layer base`).
+- **Body / body-lg:** Subtitles and descriptions — **Inter**.
+- **Label:** Buttons, table headers, nav labels — **Inter**.
+- **Stat:** Lap times and numeric highlights — **Rajdhani**, always in **primary** green.
+- **Caption:** Bottom nav, session meta (“PB 1:04.2 · 12 sessions”) — **Inter**.
+- **Badge:** Uppercase pills (“TRACK WEAPON”, “KAWASAKI”) — **Inter**; brand wordmark “Ninja” in nav may use `font-display` (Rajdhani) where noted in components.
 
 ## Layout
 

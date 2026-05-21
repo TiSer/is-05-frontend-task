@@ -12,11 +12,11 @@
 
   --text-display: 3.5rem;
   --text-display--line-height: 1.1;
-  --text-display--font-weight: 800;
+  --text-display--font-weight: 700;
 
   --text-display-mobile: 2rem;
   --text-display-mobile--line-height: 1.15;
-  --text-display-mobile--font-weight: 800;
+  --text-display-mobile--font-weight: 700;
 
   --text-h1: 1.75rem;
   --text-h1--line-height: 1.2;
@@ -130,6 +130,7 @@
   --radius-xl: 16px;
 }
 
+/* Heading/display fonts — see docs/DESIGN.md typography (Rajdhani) */
 @layer base {
   * {
     @apply border-border outline-ring/50;
